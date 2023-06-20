@@ -52,27 +52,26 @@ root.render(
         scope: requestedScopes.join(" "),
       }}
     >
-
-      {/* temp, needs to be fixed. currently only the header works */}
       <AuthTokenProvider>
         <BrowserRouter>
-          <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/verify-user" element={<VerifyUser />} />
-            <Route
-              path="home"
-              element={
-                <RequireAuth>
-                  
-                </RequireAuth>
-              }
-            >
-              <Route path="profile" element={<Profile />} />
-              <Route path="movieDetail/:movieId" element={<MovieDetail />} />
-              <Route path="debugger" element={<Debugger />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
+              <Route path="/" element={<Header />}>
+                <Route path="/" element={<Home />} />
+                <Route path="MovieDetail/:movieId" element={<MovieDetail />} />
+              </Route>
+              <Route path="/verify-user" element={<VerifyUser />} />
+              <Route
+                path="home"
+                element={
+                  <RequireAuth>
+                    <Header />
+                  </RequireAuth>
+                }
+              >
+                <Route index element={<Profile />} />
+                <Route path="debugger" element={<Debugger />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </AuthTokenProvider>

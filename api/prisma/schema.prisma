@@ -39,9 +39,9 @@ model Movie {
 model Review {
   id          Int       @id @default(autoincrement())
   rating      Float
-  comment     String?
-  user        User   @relation(fields: [userId], references: [id])
-  userId      Int    
+  comment     String?   @db.Text
+  user        User   @relation(fields: [userId], references: [auth0Id])
+  userId      String    
   movie       Movie  @relation(fields: [movieId], references: [id])
   movieId     Int
 }

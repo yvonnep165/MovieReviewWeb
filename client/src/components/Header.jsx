@@ -52,7 +52,7 @@ export default function Header() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/home/profile">Profile</Link>
+              <Link to="/home">Profile</Link>
             </li>
             <li>
               <Link to="/home/debugger">Auth Debugger</Link>
