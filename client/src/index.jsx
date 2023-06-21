@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import Home from "./components/Home";
-import Header from "./components/Header";
 import MovieDetail from "./components/MovieDetail";
 import Profile from "./components/Profile";
 import VerifyUser from "./components/VerifyUser";
@@ -55,23 +54,21 @@ root.render(
       <AuthTokenProvider>
         <BrowserRouter>
           <Routes>
-              <Route path="/" element={<Header />}>
-                <Route path="/" element={<Home />} />
-                <Route path="MovieDetail/:movieId" element={<MovieDetail />} />
-              </Route>
-              <Route path="/verify-user" element={<VerifyUser />} />
-              <Route
-                path="home"
-                element={
-                  <RequireAuth>
-                    <Header />
-                  </RequireAuth>
-                }
-              >
-                <Route index element={<Profile />} />
-                <Route path="debugger" element={<Debugger />} />
-              </Route>
-              <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/verify-user" element={<VerifyUser />} />
+            <Route
+              path="home"
+              element={
+                <RequireAuth>
+                  
+                </RequireAuth>
+              }
+            >
+              <Route index element={<Profile />} />
+              <Route path="details/:movieId" element={<MovieDetail />} />
+              <Route path="debugger" element={<Debugger />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </AuthTokenProvider>

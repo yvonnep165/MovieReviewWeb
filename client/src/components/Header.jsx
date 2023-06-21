@@ -12,14 +12,17 @@ export default function Header() {
     return (
       <div className="header">
         <div className="title">
-          <h1>global header (temp)</h1>
+          <form>
+            <label htmlFor="title">Search</label>
+            <input type="text" name="title" id="title"></input>
+            <div>
+              <input type="submit" id="submit" value="search"></input>
+            </div>
+          </form>
         </div>
         <div className="header">
           <nav className="menu">
             <ul className="menu-list">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
               <li>
                 <div>
                   <button className="btn-primary" onClick={loginWithRedirect}>
@@ -43,16 +46,19 @@ export default function Header() {
   return (
     <div className="header">
       <div className="title">
-        <h1>global header (temp)</h1>
+        <form>
+          <label htmlFor="title">Search</label>
+          <input type="text" name="title" id="title"></input>
+          <div>
+            <input type="submit" id="submit" value="search"></input>
+          </div>
+        </form>
       </div>
       <div className="header">
         <nav className="menu">
           <ul className="menu-list">
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/home">Profile</Link>
+              <Link to="/home/profile">Profile</Link>
             </li>
             <li>
               <Link to="/home/debugger">Auth Debugger</Link>

@@ -15,33 +15,30 @@ model User {
   email        String   @unique
   auth0Id      String   @unique @default("")
   name         String?
-  watchedMovies     Movie[]  @relation(name: "watchedMovies")
-  watchList    Movie[]  @relation(name: "watchList")
+  watchedMovies     Movie[]  @relation(name: "watchedBy")
+  watchList    Movie[]  @relation(name: "watchListBy")
   userReviews     Review[]
 }
 
 model Movie {
-  id          Int       @id @default(autoincrement())
+  tmdbID      Int       @id
   title       String    @db.VarChar(255)
   year        String?
-  imdbID      String
   poster      String?
-  cast        String?   @db.Text
   plot        String?   @db.Text
-  director    String?
-  imdbRating     String? 
-  rating      Float       
-  watchedBy   User[]    @relation(name: "watchedMovies")
-  WatchListBy   User[]  @relation(name: "watchList")
+  tmdbRating     Float  
+  rating      Float     @default(0)
+  watchedBy   User[]    @relation(name: "watchedBy")
+  watchListBy   User[]  @relation(name: "watchListBy")
   reviews     Review[]
 }
 
 model Review {
   id          Int       @id @default(autoincrement())
   rating      Float
-  comment     String?   @db.Text
+  comment     String?   @db.Text @db.Text
   user        User   @relation(fields: [userId], references: [auth0Id])
   userId      String    
-  movie       Movie  @relation(fields: [movieId], references: [id])
+  movie       Movie  @relation(fields: [movieId], references: [tmdbID])
   movieId     Int
 }
