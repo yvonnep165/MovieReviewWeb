@@ -16,15 +16,6 @@ export default function Header() {
               <li><Link to="/">Home</Link></li>
             </ul>
         </nav>
-        <div className="title">
-          <form>
-            <label htmlFor="title">Search</label>
-            <input type="text" name="title" id="title"></input>
-            <div>
-              <input type="submit" id="submit" value="search"></input>
-            </div>
-          </form>
-        </div>
         <div className="header">
           <nav className="menu">
             <ul className="menu-list">
@@ -55,15 +46,6 @@ export default function Header() {
               <li><Link to="/">Home</Link></li>
             </ul>
         </nav>
-      <div className="title">
-        <form>
-          <label htmlFor="title">Search</label>
-          <input type="text" name="title" id="title"></input>
-          <div>
-            <input type="submit" id="submit" value="search"></input>
-          </div>
-        </form>
-      </div>
       <div className="header">
         <nav className="menu">
           <ul className="menu-list">

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Movie from "./Movie.jsx";
+import MovieSlide from "./MovieSlide";
 import UserMovieList from "./UserMovieList";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 export default function Home() {
     const[popularMovies, setPopularMovies] = useState([]);
@@ -70,23 +69,8 @@ export default function Home() {
     return (
       <div>
         <Header />
-        <div className="slide">
-          <Carousel showThumbs={false} autoPlay={true} transitionTime={3} infiniteLoop={true} showStatus={false}>
-            {
-              popularMovies.map(movie => (
-                <Link key={movie.id} to={`/details/${movie.id}`}>
-                  <div className="largePoster">
-                      <img alt="movie poster" src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} />
-                  </div>
-                  <div className="movieInfo">
-                      <div>{movie ? movie.original_title: ""}</div>
-                      <div>{movie ? movie.release_date : ""}</div>
-                  </div>
-                </Link>
-              ))
-            }
-          </Carousel>
-        </div>
+        <MovieSlide list={popularMovies}/>
+        <SearchBar />
         <Movie list={topMovies}/>
         <Movie list={trendingMovies}/>
         <UserMovieList />
