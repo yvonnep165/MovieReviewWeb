@@ -79,6 +79,23 @@ app.post("/verify-user", requireAuth, async (req, res) => {
     }
   });
 
+  // get movie detail by id
+  app.get("/details/:movieId", async (req, res) => {
+    const movieId = parseInt(req.params.movieId);
+    const movie = await prisma.movie.findUnique({
+      where: {
+        tmdbID: movieId,
+      }
+    });
+
+    if (!movie) {
+      return res.status(404).json({error: "Movie Not Found"});
+    }
+
+    res.json(movie);
+  })
+
+
   //get user watched movies
   app.get("/watchedMovies", requireAuth, async (req, res) => {
     const auth0Id = req.auth.payload.sub;

@@ -56,6 +56,9 @@ root.render(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/details/:movieId" element={<Header />}>
+                <Route path="/details/:movieId" element={<MovieDetail />} />
+            </Route>
             <Route path="/verify-user" element={<VerifyUser />} />
             <Route
               path="home"
@@ -66,7 +69,6 @@ root.render(
               }
             >
               <Route index element={<Profile />} />
-              <Route path="details/:movieId" element={<MovieDetail />} />
               <Route path="debugger" element={<Debugger />} />
             </Route>
             <Route path="*" element={<NotFound />} />
