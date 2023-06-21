@@ -24,13 +24,13 @@ function Edit(){
 
 
 export default function Rating(){
-    const {user} = useAuth0();
+    const { user } = useAuth0();
 
 
     return (reviews.map((review) => {
     
-        const isAuthenticated = user.sub === review.userId;
-    return <div>
+        const isAuthenticated = user && user.sub === review.userId;
+        return <div>
         <p>James</p>
         <p>Rate: 4.5</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In eum dolorum aliquid quis cumque aut saepe quos porro explicabo rerum soluta sequi animi deserunt nemo est esse placeat, sed deleniti.</p>

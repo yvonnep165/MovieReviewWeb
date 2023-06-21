@@ -11,6 +11,7 @@ import Debugger from "./components/Debugger";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { AuthTokenProvider } from "./AuthTokenContext";
+import Header from "./components/Header";
 
 const requestedScopes = [
   "profile",
@@ -60,7 +61,7 @@ root.render(
               path="home"
               element={
                 <RequireAuth>
-                  
+                  <Header />
                 </RequireAuth>
               }
             >

@@ -21,7 +21,7 @@ model User {
 }
 
 model Movie {
-  tmdbID      Int       @id
+  tmdbID      Int       @id @unique
   title       String    @db.VarChar(255)
   year        String?
   poster      String?
@@ -36,7 +36,7 @@ model Movie {
 model Review {
   id          Int       @id @default(autoincrement())
   rating      Float
-  comment     String?   @db.Text @db.Text
+  comment     String?   @db.Text 
   user        User   @relation(fields: [userId], references: [auth0Id])
   userId      String    
   movie       Movie  @relation(fields: [movieId], references: [tmdbID])

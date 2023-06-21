@@ -11,6 +11,11 @@ export default function Header() {
   } else if (!isAuthenticated) {
     return (
       <div className="header">
+        <nav className="menu">
+            <ul className="menu-list">
+              <li><Link to="/">Home</Link></li>
+            </ul>
+        </nav>
         <div className="title">
           <form>
             <label htmlFor="title">Search</label>
@@ -45,6 +50,11 @@ export default function Header() {
 
   return (
     <div className="header">
+      <nav className="menu">
+            <ul className="menu-list">
+              <li><Link to="/">Home</Link></li>
+            </ul>
+        </nav>
       <div className="title">
         <form>
           <label htmlFor="title">Search</label>
@@ -58,7 +68,7 @@ export default function Header() {
         <nav className="menu">
           <ul className="menu-list">
             <li>
-              <Link to="/home/profile">Profile</Link>
+              <Link to="/home">Profile</Link>
             </li>
             <li>
               <Link to="/home/debugger">Auth Debugger</Link>
