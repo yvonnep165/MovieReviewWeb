@@ -14,8 +14,8 @@ export default function MovieSlide( {list} ) {
                       <img alt="movie poster" src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} />
                   </div>
                   <div className="movieInfo">
-                      <div>{movie ? movie.original_title: ""}</div>
-                      <div>{movie ? movie.release_date : ""}</div>
+                      <span>{movie ? movie.original_title: ""}</span>
+                      <span>{movie ? movie.release_date : ""}</span>
                   </div>
                 </Link>
               ))

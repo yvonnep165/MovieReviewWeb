@@ -6,11 +6,16 @@ import UserMovieList from "./UserMovieList";
 import SearchBar from "./SearchBar";
 
 export default function Home() {
+    const[nowPlayMovies, setNowPlayMovies] = useState([]);
     const[popularMovies, setPopularMovies] = useState([]);
     const[topMovies, settopMovies] = useState([]);
     const[trendingMovies, setTrendingMovies] = useState([]);
 
     useEffect(() => {
+      fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=f699b890c77dbed8ae7006e0ec924d1d&language=en-US")
+      .then(res => res.json())
+      .then(data => setNowPlayMovies(data.results.slice(0, 10)))      
+      
       fetch("https://api.themoviedb.org/3/movie/popular?api_key=f699b890c77dbed8ae7006e0ec924d1d&language=en-US")
       .then(res => res.json())
       .then(data => setPopularMovies(data.results.slice(0, 10)))
@@ -55,6 +60,10 @@ export default function Home() {
     }
 
     useEffect(() => {
+      addMovieToDatabase(nowPlayMovies)
+    }, [nowPlayMovies]);
+
+    useEffect(() => {
       addMovieToDatabase(popularMovies)
     }, [popularMovies]);  
 
@@ -69,10 +78,14 @@ export default function Home() {
     return (
       <div>
         <Header />
-        <MovieSlide list={popularMovies}/>
-        <SearchBar />
-        <Movie list={topMovies}/>
+        <MovieSlide list={nowPlayMovies}/>
+        <SearchBar addMovieToDatabase={addMovieToDatabase}/>
+        <h2 className="session">Popular Movies</h2>
+        <Movie list={popularMovies}/>
+        <h2 className="session">Trending Movies</h2>
         <Movie list={trendingMovies}/>
+        <h2 className="session">Top rated Movies</h2>
+        <Movie list={topMovies}/>
         <UserMovieList />
       </div>
   );
