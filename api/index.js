@@ -53,6 +53,20 @@ app.post("/verify-user", requireAuth, async (req, res) => {
     }
   });
 
+// get an user by user id
+app.get("/users/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  const user = await prisma.user.findUnique({
+    where: {
+      auth0Id: userId,
+    }
+  })
+  if (!user){
+    return res.status(404).json({error: "User Not Found"});
+  }
+  res.json(user);
+})
+
   //add new movies
   app.post("/details", async (req, res) => {
     const { tmdbID, title, year, poster, plot, tmdbRating } = req.body;
@@ -96,6 +110,175 @@ app.post("/verify-user", requireAuth, async (req, res) => {
   })
 
 
+  // add new reviews
+  app.post("/details/review/:movieId", requireAuth, async (req, res) => {
+    const movieId = parseInt(req.params.movieId);
+    const auth0Id = req.auth.payload.sub;
+    const {rating, comment} = req.body;
+
+    const newReview = await prisma.review.create({
+      data: {
+        userId: auth0Id, 
+        rating, comment, movieId
+      }, include: {
+        user: true,
+        movie: true,
+      }
+    });
+  
+    // Update userReviews in the User table
+    await prisma.user.update({
+      where: { auth0Id },
+      data: {
+        userReviews: {
+          connect: { id: newReview.id },
+        },
+      },
+    });
+
+    // Update reviews in the Movie table
+    await prisma.movie.update({
+      where: { tmdbID: movieId },
+      data: {
+        reviews: {
+          connect: { id: newReview.id },
+        },
+      },
+    });
+
+    res.json(newReview); 
+  })
+
+  // get a review by review id
+  app.get("/details/review/:reviewId", async (req, res) => {
+    const reviewId = parseInt(req.params.reviewId);
+    const review = await prisma.review.findUnique({
+      where: {
+        id: reviewId,
+      }
+    });
+
+    if (!review) {
+      return res.status(404).json({error: "Review Not Found"});
+    }
+
+    res.json(review);
+  })
+
+  // get all the reviews of a movie
+  app.get("/details/reviewByMovie/:movieId", async (req, res) => {
+    const movieId = parseInt(req.params.movieId);
+    
+    const movie = await prisma.movie.findUnique({
+      where: {
+        tmdbID: movieId,
+      }, include: {
+        reviews: true,
+      }
+    });
+
+    const reviews = movie.reviews;
+
+    res.json(reviews);
+  })
+
+  // get all the reviews of an user
+  app.get("/details/reviewByUser/:userId", requireAuth, async (req, res) => {
+    const userId = req.params.userId;
+    
+    const user = await prisma.user.findUnique({
+      where: {
+        auth0Id: userId,
+      }, include: {
+        userReviews: true,
+      }
+    });
+
+    const reviews = user.userReviews;
+
+    res.json(reviews);
+  })
+
+  // add new watched movies
+  app.put("/details/watched/:movieId", requireAuth, async (req, res) => {
+    const movieId = parseInt(req.params.movieId);
+    const auth0Id = req.auth.payload.sub;
+
+    const user = await prisma.user.update({
+      where: {
+        auth0Id
+      }, data: {
+        watchedMovies: {connect: {tmdbID: movieId}}
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(user);
+  })
+
+  // add a new movie to the watchlist
+  app.put("/details/watchlist/:movieId", requireAuth, async (req, res) => {
+    const movieId = parseInt(req.params.movieId);
+    const auth0Id = req.auth.payload.sub;
+
+    const user = await prisma.user.update({
+      where: {
+        auth0Id
+      }, data: {
+        watchList: {connect: {tmdbID: movieId}}
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(user);
+  })
+
+  // remove a movie from the watchlist
+  app.put("/details/watchlist/remove/:movieId", requireAuth, async(req, res) => {
+    const movieId = parseInt(req.params.movieId);
+    const auth0Id = req.auth.payload.sub;
+
+    const user = await prisma.user.update({
+      where: {
+        auth0Id
+      }, data: {
+        watchList: {disconnect: {tmdbID: movieId}}
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(user);
+  })
+
+  // check if the user has added the current movie to their watchlist
+  app.get("/details/watchlist/:movieId", requireAuth, async (req, res) => {
+    const movieId = parseInt(req.params.movieId);
+    const auth0Id = req.auth.payload.sub;
+
+    const user = await prisma.user.findUnique({
+      where: {
+        auth0Id,
+      }, select: {
+        watchList: { where: { tmdbID: movieId } }
+      }
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    return res.json(user.watchList);
+  })
+
+
   //get user watched movies
   app.get("/watchedMovies", requireAuth, async (req, res) => {
     const auth0Id = req.auth.payload.sub;
@@ -136,7 +319,9 @@ app.post("/verify-user", requireAuth, async (req, res) => {
     console.log(watchList);
     res.json(watchList);
   });
-  
+
+
+
   app.listen(8000, () => {
     console.log("Server running on http://localhost:8000 🎉 🚀");
   });
