@@ -17,7 +17,7 @@ model User {
   name         String?
   watchedMovies     Movie[]  @relation(name: "watchedBy")
   watchList    Movie[]  @relation(name: "watchListBy")
-  userReviews     Review[]
+  userReviews     Review[]  @relation(name: "UserReviews")
 }
 
 model Movie {
@@ -28,17 +28,18 @@ model Movie {
   plot        String?   @db.Text
   tmdbRating     Float  
   rating      Float     @default(0)
+  ratingCount   Int     @default(0)
   watchedBy   User[]    @relation(name: "watchedBy")
   watchListBy   User[]  @relation(name: "watchListBy")
-  reviews     Review[]
+  reviews     Review[]  @relation(name: "MovieReviews")
 }
 
 model Review {
   id          Int       @id @default(autoincrement())
   rating      Float
   comment     String?   @db.Text 
-  user        User   @relation(fields: [userId], references: [auth0Id])
+  user        User   @relation(name: "UserReviews", fields: [userId], references: [auth0Id])
   userId      String    
-  movie       Movie  @relation(fields: [movieId], references: [tmdbID])
+  movie       Movie  @relation(name: "MovieReviews", fields: [movieId], references: [tmdbID])
   movieId     Int
 }

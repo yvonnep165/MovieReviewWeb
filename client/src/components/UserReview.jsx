@@ -2,10 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useAuthToken } from "../AuthTokenContext";
-
-function Edit() {
-    return <button>Edit</button>;
-  }
+import Edit from "./EditButton";
 
 export default function UserReview() {
     const { user } = useAuth0();
@@ -66,7 +63,7 @@ export default function UserReview() {
           <p>{review.rating}</p>
           <p>{review.comment}</p>
 
-          {isAuthenticated && <Edit />}
+          {isAuthenticated && <Edit movieId={review.movieId} />}
         </li>
       </div>
     );

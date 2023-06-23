@@ -26,11 +26,10 @@ export default function MovieDetail() {
 
   const {accessToken} = useAuthToken();
   const isAuthenticated = accessToken !== undefined;
-  console.log(movieDetail);
 
   if (isLoading) {
     return <div>is loading</div>;
-  }
+  } 
 
   return (
     <div className="info">
@@ -47,7 +46,7 @@ export default function MovieDetail() {
       </div>
       </div>
 
-      {isAuthenticated && <AddReview />}
+      {isAuthenticated && <AddReview movie={movieDetail} />}
 
       <Rating />
     </div>

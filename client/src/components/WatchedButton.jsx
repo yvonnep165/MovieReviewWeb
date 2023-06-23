@@ -10,51 +10,51 @@ export default function WatchedButton() {
   const { movieId } = useParams();
   const { accessToken } = useAuthToken();
   const [show, setShow] = useState(false);
-  const [rating, setRating] = useState();
+  const [currentRating, setCurrentRating] = useState();
   const [comment, setComment] = useState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const newReview = {
-    rating: parseFloat(rating),
-    comment: comment
-  }
+    rating: parseFloat(currentRating),
+    comment: comment,
+  };
 
   function handleSave() {
     fetch(`${process.env.REACT_APP_API_URL}/details/review/${movieId}`, {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-          },
-        body: JSON.stringify(newReview),
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newReview),
     })
-    .then((response) => {
+      .then((response) => {
         console.log("New review has been added.", response);
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.log("Error:", error);
-    })
+      });
 
     fetch(`${process.env.REACT_APP_API_URL}/details/watched/${movieId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
-      }
+      },
     }).then((response) => {
       if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
       window.location.reload();
-  })
+    });
   }
+
 
   const handleSaveAndClose = () => {
     handleClose();
     handleSave();
   };
-  
 
   return (
     <>
@@ -70,7 +70,12 @@ export default function WatchedButton() {
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>My Rating</Form.Label>
-              <Form.Control type="text" value={rating} onChange={(e) => setRating(e.currentTarget.value)} autoFocus />
+              <Form.Control
+                type="text"
+                value={currentRating}
+                onChange={(e) => setCurrentRating(e.currentTarget.value)}
+                autoFocus
+              />
             </Form.Group>
             <Form.Group
               className="mb-3"

@@ -42,6 +42,8 @@ export default function Profile() {
       </div>
 
       <UserMovieList />
+
+      <h2>Reviews</h2>
       <UserReview />
     </div>
   );

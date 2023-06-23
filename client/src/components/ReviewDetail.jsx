@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
-function Edit() {
-  return <button>Edit</button>;
-}
+import Edit from "./EditButton";
 
 export default function Rating() {
   const { user } = useAuth0();
@@ -62,7 +59,7 @@ export default function Rating() {
           {review.comment}
         </p>
 
-        {isAuthenticated && <Edit />}
+        {isAuthenticated && <Edit movieId={movieId}/>}
         </li>
       </div>
     );
