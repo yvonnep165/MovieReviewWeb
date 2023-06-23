@@ -25,14 +25,20 @@
     justify-content: center;
 }
 
-.login-button button {
+.login-button button, .top-link {
     margin: 0 10px;
     overflow: hidden;
     border: 0;
     white-space: nowrap;
 }
 
-button:hover {
+.top-link:hover, button:hover {
     background-color: #1d1b16;
     border-radius: 3px;
+}
+
+.top-link {
+    text-decoration: none;
+    background-color: transparent;
+    color: #fcf7f7;
 }

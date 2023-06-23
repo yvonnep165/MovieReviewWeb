@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../style/movie.css";
-import no_poster_default from "./no_poster_default.jpeg"
+import no_poster_default from "./no_poster_default.jpg"
 
 export default function Movie( {list} ) {
     return (

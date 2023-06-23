@@ -14,7 +14,7 @@ export default function Header() {
       <div className="menu-items">
         <nav className="menu">
             <ul className="menu-list">
-              <li><Link to="/">Home</Link></li>
+              <li><Link to="/" className="top-link">Home</Link></li>
             </ul>
         </nav>
         <div className="menu-items">
@@ -44,24 +44,24 @@ export default function Header() {
     <div className="menu-items">
       <nav className="menu">
             <ul className="menu-list">
-              <li><Link to="/">Home</Link></li>
+              <li><Link to="/" className="top-link">Home</Link></li>
             </ul>
         </nav>
       <div className="header">
         <nav className="menu">
           <ul className="menu-items">
             <li>
-              <Link to="/home">Profile</Link>
+              <Link to="/home" className="top-link">Profile</Link>
             </li>
             <li>
-              <Link to="/home/debugger">Auth Debugger</Link>
+              <Link to="/home/debugger" className="top-link">Auth Debugger</Link>
             </li>
             <li>
               <div>
                 <div className="menu-items">
                   <div >Welcome 👋 {user.name} </div>
                   <button
-                    className="exit-button"
+                    className="top-link"
                     onClick={() => logout({ returnTo: window.location.origin })}
                   >
                     LogOut
