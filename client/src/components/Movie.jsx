@@ -16,6 +16,7 @@ export default function Movie( {list} ) {
                         <h3>{movie ? movie.original_title: ""}</h3>
                         <span>{movie ? movie.release_date : ""}</span>
                     </div>
+                    <article className="overview">{movie ? movie.overview : ""}</article>
                 </Link>
             </div>
             ))}

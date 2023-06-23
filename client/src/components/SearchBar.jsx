@@ -25,32 +25,23 @@ export default function SearchBar({ addMovieToDatabase }) {
   }
 
   if (searchResult.length === 0) {
-    if (searchMovie === "") {
-      return (
-        <div>
-          <form>
-            <label htmlFor="search">Search</label>
-            <input type="text" name="search" id="search" className="search" value={searchMovie} placeholder="Search the movie by its name"
-                    onChange={handleChange}></input>
-          </form>
-        </div>
-      ) 
-    }
     return (
       <div>
         <form>
-          <label htmlFor="search">Search</label>
+          <label className="searchLabel" htmlFor="search">Search</label>
           <input type="text" name="search" id="search" className="search" value={searchMovie} placeholder="Search the movie by its name"
                   onChange={handleChange}></input>
         </form>
-        <section>Sorry, No movies found</section>
+        {searchMovie === "" ? 
+          <section></section>
+        : <section className="warn">Sorry, No movie found</section>}
       </div>
   ) 
   } else {
     return (
       <div>
         <form>
-          <label htmlFor="search">Search</label>
+          <label className="searchLabel" htmlFor="search">Search</label>
           <input type="text" name="search" id="search" className="search" value={searchMovie} placeholder="Search the movie by its name"
                   onChange={handleChange}></input>
         </form>
