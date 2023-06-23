@@ -1,13 +1,10 @@
 import React from "react";
-import Rating from "./Rating";
+import Rating from "./ReviewDetail";
 import "../style/movieDetail.css";
 import { useAuthToken } from "../AuthTokenContext";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-function MakeReviews(){
-  return <button>Rate</button>;
-}
+import AddReview from "./AddReview";
 
 export default function MovieDetail() {
   const {movieId} = useParams();
@@ -50,7 +47,7 @@ export default function MovieDetail() {
       </div>
       </div>
 
-      {isAuthenticated && <MakeReviews />}
+      {isAuthenticated && <AddReview />}
 
       <Rating />
     </div>

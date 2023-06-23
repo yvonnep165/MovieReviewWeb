@@ -8,6 +8,7 @@ import VerifyUser from "./components/VerifyUser";
 import NotFound from "./components/NotFound";
 import Debugger from "./components/Debugger";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { AuthTokenProvider } from "./AuthTokenContext";
