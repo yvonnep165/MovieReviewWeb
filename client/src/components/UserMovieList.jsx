@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useAuthToken } from "../AuthTokenContext";
+import "../style/userMovieList.css";
 
 export default function UserMovieList() {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -55,23 +56,23 @@ export default function UserMovieList() {
       <div>
         {!isAuthenticated ? (
             <div>
-                <h3>Please login to see the watched movie list</h3>
-                <button className="btn-primary" onClick={loginWithRedirect}>
-                    Login
+                <h3 className="remind">Sign in to keep track of what you have watched</h3>
+                <button className="login" onClick={loginWithRedirect}>
+                    Login/Sign Up
                 </button>
           </div>
         ) : (
-          <div>
+          <div className="user-list">
             {watchedMovies.map((movie) => (
-              <Link key={movie.tmdbID} to={`/details/${movie.tmdbID}`}>
-                <div className="poster">
+              <div key={movie.tmdbID} className="individual-movie">
+                <Link to={`/details/${movie.tmdbID}`}>
                   <img
                     alt="movie poster"
                     src={`https://image.tmdb.org/t/p/original${movie && movie.poster}`}
                   />
-                </div>
-                <div>{movie ? movie.title : ""}</div>
-              </Link>
+                  <h4 className="movie-title">{movie ? movie.title : ""}</h4>
+               </Link>
+              </div>
             ))}
           </div>
         )}
@@ -80,23 +81,23 @@ export default function UserMovieList() {
       <div>
         {!isAuthenticated ? (
             <div>
-                <h3>Please login to see the watch list</h3>
-                <button className="btn-primary" onClick={loginWithRedirect}>
-                    Login
+                <h3 className="remind">Sign in to access your Watchlist</h3>
+                <button className="login" onClick={loginWithRedirect}>
+                    Login/Sign Up
                 </button>
           </div>
         ) : (
-          <div>
+          <div className="user-list">
             {watchList.map((movie) => (
-              <Link key={movie.tmdbID} to={`/details/${movie.tmdbID}`}>
-                <div className="poster">
+              <div key={movie.tmdbID} className="individual-movie">
+                <Link key={movie.tmdbID} to={`/details/${movie.tmdbID}`}>
                   <img
                     alt="movie poster"
                     src={`https://image.tmdb.org/t/p/original${movie && movie.poster}`}
                   />
-                </div>
-                <div>{movie ? movie.title : ""}</div>
-              </Link>
+                <h4 className="movie-title">{movie ? movie.title : ""}</h4>
+                </Link>
+              </div>
             ))}
           </div>
         )}

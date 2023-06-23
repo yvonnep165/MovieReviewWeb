@@ -11,17 +11,17 @@ export default function Header() {
     return <div className="loading">Loading...</div>;
   } else if (!isAuthenticated) {
     return (
-      <div className="header">
+      <div className="menu-items">
         <nav className="menu">
             <ul className="menu-list">
               <li><Link to="/">Home</Link></li>
             </ul>
         </nav>
-        <div className="header">
+        <div className="menu-items">
           <nav className="menu">
             <ul className="menu-list">
               <li>
-                <div>
+                <div className="login-button">
                   <button className="btn-primary" onClick={loginWithRedirect}>
                     Log in
                   </button>
@@ -41,7 +41,7 @@ export default function Header() {
   }
 
   return (
-    <div className="header">
+    <div className="menu-items">
       <nav className="menu">
             <ul className="menu-list">
               <li><Link to="/">Home</Link></li>
@@ -49,7 +49,7 @@ export default function Header() {
         </nav>
       <div className="header">
         <nav className="menu">
-          <ul className="menu-list">
+          <ul className="menu-items">
             <li>
               <Link to="/home">Profile</Link>
             </li>
@@ -58,8 +58,8 @@ export default function Header() {
             </li>
             <li>
               <div>
-                <div>
-                  <div>Welcome 👋 {user.name} </div>
+                <div className="menu-items">
+                  <div >Welcome 👋 {user.name} </div>
                   <button
                     className="exit-button"
                     onClick={() => logout({ returnTo: window.location.origin })}

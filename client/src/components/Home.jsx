@@ -15,7 +15,7 @@ export default function Home() {
     useEffect(() => {
       fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=f699b890c77dbed8ae7006e0ec924d1d&language=en-US")
       .then(res => res.json())
-      .then(data => setNowPlayMovies(data.results.slice(0, 10)))      
+      .then(data => setNowPlayMovies(data.results.slice(0, 15)))      
       
       fetch("https://api.themoviedb.org/3/movie/popular?api_key=f699b890c77dbed8ae7006e0ec924d1d&language=en-US")
       .then(res => res.json())
@@ -79,13 +79,14 @@ export default function Home() {
     return (
       <div>
         <Header />
+        <h2>Playing Now In The Theaters</h2>
         <MovieSlide list={nowPlayMovies}/>
         <SearchBar addMovieToDatabase={addMovieToDatabase}/>
         <h2>Popular Movies</h2>
         <Movie list={popularMovies}/>
         <h2>Trending Movies</h2>
         <Movie list={trendingMovies}/>
-        <h2>Top rated Movies</h2>
+        <h2>Top Rated Movies</h2>
         <Movie list={topMovies}/>
         <UserMovieList />
       </div>

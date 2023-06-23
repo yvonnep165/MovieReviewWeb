@@ -3,8 +3,36 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.hearder {
+.menu-items {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: end;
+    align-items: center;
+    justify-content: flex-end;
+    list-style-type: none;
+}
+
+.menu-items > * {
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.menu-list {
+    list-style-type: none;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+}
+
+.login-button button {
+    margin: 0 10px;
+    overflow: hidden;
+    border: 0;
+    white-space: nowrap;
+}
+
+button:hover {
+    background-color: #1d1b16;
+    border-radius: 3px;
 }
