@@ -4,6 +4,7 @@ import Movie from "./Movie.jsx";
 import MovieSlide from "./MovieSlide";
 import UserMovieList from "./UserMovieList";
 import SearchBar from "./SearchBar";
+import "../style/home.css";
 
 export default function Home() {
     const[nowPlayMovies, setNowPlayMovies] = useState([]);
@@ -80,11 +81,11 @@ export default function Home() {
         <Header />
         <MovieSlide list={nowPlayMovies}/>
         <SearchBar addMovieToDatabase={addMovieToDatabase}/>
-        <h2 className="session">Popular Movies</h2>
+        <h2>Popular Movies</h2>
         <Movie list={popularMovies}/>
-        <h2 className="session">Trending Movies</h2>
+        <h2>Trending Movies</h2>
         <Movie list={trendingMovies}/>
-        <h2 className="session">Top rated Movies</h2>
+        <h2>Top rated Movies</h2>
         <Movie list={topMovies}/>
         <UserMovieList />
       </div>

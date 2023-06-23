@@ -23,5 +23,25 @@
     color: #fcf7f7;
     padding: 0.5rem 1rem 1rem;
     text-align: center;
+    background-color: #0c0b00;
 }
 
+.overview {
+    background-color: #0c0b00;
+    color: #fcf7f7;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 100%;
+    transform: translateY(101%);
+    transition: transform 0.3s ease-in;
+}
+
+.singleMovie:hover .overview {
+    transform: translateY(0);
+}
+
+h3 {
+    background-color: #0c0b00;
+}

@@ -1,0 +1,10 @@
+* {
+    color: #fcf7f7;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hearder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+}

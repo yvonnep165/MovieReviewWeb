@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import "../style/header.css";
 
 export default function Header() {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
