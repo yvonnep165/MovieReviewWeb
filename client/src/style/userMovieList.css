@@ -43,3 +43,19 @@
     align-items: center;
     margin: auto;
 }
+
+@media (max-width:550px) {
+    .user-list {
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 0.1rem 1rem 1rem;
+    }
+
+    .individual-movie {
+        flex-basis: 40%;
+    }
+
+    .movie-title {
+        font-size: 0.9rem;
+    }
+}

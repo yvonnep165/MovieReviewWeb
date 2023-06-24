@@ -13,3 +13,9 @@ h2::before {
     margin-right: 10px;
     color: #deb522;
 }
+
+@media (max-width:550px) {
+    h2 {
+        margin-left: 10px;
+    }
+}

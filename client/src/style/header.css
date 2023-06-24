@@ -42,3 +42,11 @@
     background-color: transparent;
     color: #fcf7f7;
 }
+
+@media (max-width:550px) {
+    .menu-items {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+    }
+}
