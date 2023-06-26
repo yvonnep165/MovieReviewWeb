@@ -145,7 +145,7 @@ app.post("/details/review/:movieId", requireAuth, async (req, res) => {
   });
 
   const newRatingCount = existingMovie.ratingCount + 1;
-  const newRating = (existingMovie.rating * existingMovie.ratingCount + rating) / newRatingCount;
+  const newRating = ((existingMovie.rating * existingMovie.ratingCount + rating) / newRatingCount).toFixed(2);
 
   // Update reviews in the Movie table
   await prisma.movie.update({
@@ -187,7 +187,7 @@ app.put("/details/review/:movieId", requireAuth, async (req, res) => {
     select: { rating: true, ratingCount: true },
   });
 
-  const newRating = (existingMovie.rating * existingMovie.ratingCount + rating - existingReview.rating) / existingMovie.ratingCount;
+  const newRating = ((existingMovie.rating * existingMovie.ratingCount + rating - existingReview.rating) / existingMovie.ratingCount).toFixed(2);
 
   // Update the existing review
   const updatedReview = await prisma.review.update({
