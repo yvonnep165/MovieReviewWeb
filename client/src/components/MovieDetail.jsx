@@ -35,9 +35,7 @@ export default function MovieDetail() {
     <div className="content">
     <div className="info">
       <div className="container">
-      <div className="posters">
         <img className="poster" src={`https://image.tmdb.org/t/p/original${movieDetail.poster}`} alt="poster" />
-      </div>
       <div className="brief">
         <h1 className="title">{movieDetail.title}</h1>
         <p className="plot">{movieDetail.plot}</p>

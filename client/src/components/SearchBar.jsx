@@ -1,4 +1,4 @@
-// import "../style/searchBar.css";
+import "../style/searchBar.css";
 import Movie from "./Movie.jsx";
 import React, { useState } from "react";;
 
@@ -27,7 +27,7 @@ export default function SearchBar({ addMovieToDatabase }) {
   if (searchResult.length === 0) {
     return (
       <div>
-        <form>
+        <form className="search-form">
           <label className="searchLabel" htmlFor="search">Search</label>
           <input type="text" name="search" id="search" className="search" value={searchMovie} placeholder="Search the movie by its name"
                   onChange={handleChange}></input>
@@ -40,7 +40,7 @@ export default function SearchBar({ addMovieToDatabase }) {
   } else {
     return (
       <div>
-        <form>
+        <form className="search-form">
           <label className="searchLabel" htmlFor="search">Search</label>
           <input type="text" name="search" id="search" className="search" value={searchMovie} placeholder="Search the movie by its name"
                   onChange={handleChange}></input>

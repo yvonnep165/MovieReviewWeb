@@ -2,7 +2,7 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-form {
+.search-form {
     display: flex;
     padding: 1rem;
     justify-content: center;

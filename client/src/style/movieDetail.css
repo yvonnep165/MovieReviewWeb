@@ -3,19 +3,21 @@
 }
 
 .info {
-    /* background-color: rgb(31,31,31); */
     color: white;
-    margin: 0 10%;
+    margin: 0 20%;
 }
 
 .container {
     display: flex;
     flex-wrap: nowrap;
+    padding: 0;
 }
 
 
 .poster {
-    width: 30%;
+    width: 20%;
+    margin-right: 100px;
+    margin-bottom: 20px;
 }
 
 .brief {
@@ -27,6 +29,7 @@
     flex-wrap: nowrap;
     gap: 20px;
     align-items: center;
+    margin-top: 20px;
 }
 
 .watched-text {
