@@ -11,6 +11,7 @@ export default function Header() {
     return <div className="loading">Loading...</div>;
   } else if (!isAuthenticated) {
     return (
+      <div className="app">
       <div className="menu-items">
         <nav className="menu">
             <ul className="menu-list">
@@ -33,7 +34,8 @@ export default function Header() {
             </ul>
           </nav>
         </div>
-        <div className="content">
+      </div>
+      <div className="content">
           <Outlet />
         </div>
       </div>
@@ -41,6 +43,7 @@ export default function Header() {
   }
 
   return (
+    <div className="app">
     <div className="menu-items">
       <nav className="menu">
             <ul className="menu-list">
@@ -51,10 +54,10 @@ export default function Header() {
         <nav className="menu">
           <ul className="menu-items">
             <li>
-              <Link to="/home" className="top-link">Profile</Link>
+              <Link to="/profile" className="top-link">Profile</Link>
             </li>
             <li>
-              <Link to="/home/debugger" className="top-link">Auth Debugger</Link>
+              <Link to="/profile/debugger" className="top-link">Auth Debugger</Link>
             </li>
             <li>
               <div>
@@ -73,7 +76,9 @@ export default function Header() {
         </nav>
       </div>
 
-      <div className="content">
+      
+    </div>
+    <div className="content">
         <Outlet />
       </div>
     </div>

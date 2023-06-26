@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Edit from "./EditButton";
+import HalfRating from "./RatingStar";
+import "../style/movieDetail.css";
 
 export default function Rating() {
   const { user } = useAuth0();
@@ -46,14 +48,17 @@ export default function Rating() {
   return reviews.map((review) => {
     const isAuthenticated = user && user.sub === review.userId;
     const reviewUser = reviewUsers.find((user) => user.auth0Id === review.userId);
+    const star = parseFloat((Math.round(review.rating / 2)).toFixed(1));
 
     return (
       <div>
-        <li key={review.id}>
+        <ul className="movie-review-list">
+        <li key={review.id} className="movie-review-item">
         {reviewUser && (
-                <div>
+                <div className="movie-review-item">
                   <p>{reviewUser.name}</p>
                   </div>)}
+        <HalfRating value={star}/>
         <p>{review.rating}</p>
         <p>
           {review.comment}
@@ -61,6 +66,7 @@ export default function Rating() {
 
         {isAuthenticated && <Edit movieId={movieId}/>}
         </li>
+        </ul>
       </div>
     );
   });

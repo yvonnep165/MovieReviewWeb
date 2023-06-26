@@ -61,9 +61,9 @@ export default function WatchlistButton(){
     return (
         <div className="watchlist">
             {!watchlisted ? (
-                <button onClick={addWatchlist}>+ Watchlist</button>
+                <button className="detail-button" onClick={addWatchlist}>+ Watchlist</button>
             ) : (
-                <button onClick={removeWatchlist}>✔︎ Watchlist</button>
+                <button className="detail-button" onClick={removeWatchlist}>✔︎ Watchlist</button>
             )}
         </div>
     );

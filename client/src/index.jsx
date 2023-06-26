@@ -62,7 +62,7 @@ root.render(
             </Route>
             <Route path="/verify-user" element={<VerifyUser />} />
             <Route
-              path="home"
+              path="profile"
               element={
                 <RequireAuth>
                   <Header />

@@ -32,6 +32,7 @@ export default function MovieDetail() {
   } 
 
   return (
+    <div className="content">
     <div className="info">
       <div className="container">
       <div className="posters">
@@ -41,14 +42,13 @@ export default function MovieDetail() {
         <h1 className="title">{movieDetail.title}</h1>
         <p className="plot">{movieDetail.plot}</p>
         <p className="year">{movieDetail.year}</p>
-        <p>{movieDetail.tmdbRating}</p>
-        <p>{movieDetail.rating}</p>
+        <p>IMDB Rating: {movieDetail.tmdbRating}</p>
+        <p>Local Rating: {movieDetail.rating}</p>
       </div>
       </div>
-
       {isAuthenticated && <AddReview movie={movieDetail} />}
-
       <Rating />
+    </div>
     </div>
   );
 }

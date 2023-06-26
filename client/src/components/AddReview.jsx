@@ -10,8 +10,8 @@ export default function AddReview({movie}){
     const isUserIdInList = reviews.some(review => review.userId === userId);
     
 
-    return <div className="review_container">
+    return <div className="review-container">
         <WatchlistButton />
-       {isUserIdInList ? (<div><p>You've watched this movie</p></div>): (<WatchedButton />)}
+       {isUserIdInList ? (<div className="watched-text"><p className="watched-text-p">You've watched this movie</p></div>): (<WatchedButton />)}
     </div>
 }

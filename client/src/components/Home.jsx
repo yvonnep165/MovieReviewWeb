@@ -77,7 +77,7 @@ export default function Home() {
     }, [trendingMovies]);
 
     return (
-      <div>
+      <div className="homepage">
         <Header />
         <h2>Playing Now In The Theaters</h2>
         <MovieSlide list={nowPlayMovies}/>

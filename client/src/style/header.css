@@ -1,5 +1,5 @@
 * {
-    color: #fcf7f7;
+    /* color: #fcf7f7; */
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: flex-end;
     list-style-type: none;
+    color: #fcf7f7;
 }
 
 .menu-items > * {

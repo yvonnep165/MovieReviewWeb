@@ -1,4 +1,4 @@
-import "../style/searchBar.css";
+// import "../style/searchBar.css";
 import Movie from "./Movie.jsx";
 import React, { useState } from "react";;
 

@@ -2,9 +2,9 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useAuthToken } from "../AuthTokenContext";
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import "../style/reviewInput.css";
 
 export default function WatchedButton() {
   const { movieId } = useParams();
@@ -58,18 +58,19 @@ export default function WatchedButton() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <button className="detail-button" onClick={handleShow}>
         Watched
-      </Button>
+      </button>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>I've Watched This Movie</Modal.Title>
+      <div>
+      <Modal show={show} onHide={handleClose} >
+        <Modal.Header closeButton className="popup">
+          <Modal.Title className="popup">I've Watched This Movie</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>My Rating</Form.Label>
+        <Modal.Body className="popup">
+          <Form className="popup">
+            <Form.Group className="mb-3 popup" controlId="exampleForm.ControlInput1">
+              <Form.Label className="popup">My Rating</Form.Label>
               <Form.Control
                 type="text"
                 value={currentRating}
@@ -78,10 +79,10 @@ export default function WatchedButton() {
               />
             </Form.Group>
             <Form.Group
-              className="mb-3"
+              className="mb-3 popup"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Comment</Form.Label>
+              <Form.Label className="popup">Comment</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -92,15 +93,16 @@ export default function WatchedButton() {
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Modal.Footer className="popup">
+          <button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleSaveAndClose}>
+          </button>
+          <button variant="primary" onClick={handleSaveAndClose}>
             Save
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
+      </div>
     </>
   );
 }
