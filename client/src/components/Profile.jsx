@@ -3,6 +3,8 @@ import UserMovieList from "./UserMovieList";
 import { useEffect, useState } from "react";
 import UserReview from "./UserReview";
 import { useAuthToken } from "../AuthTokenContext";
+import "../style/userReview.css";
+
 
 export default function Profile() {
   const { user } = useAuth0();
@@ -34,17 +36,18 @@ export default function Profile() {
 
   return (
     <div>
-      <div>
+      <h2>Personal Infomation</h2>
+      <div className="personal-info">
         <p>Name: {currentUser.name}</p>
-      </div>
-      <div>
         <p>📧 Email: {currentUser.email}</p>
       </div>
 
       <UserMovieList />
 
       <h2>Reviews</h2>
+      <div className="user-review-list">
       <UserReview />
+      </div>
     </div>
   );
 }

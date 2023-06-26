@@ -1,0 +1,36 @@
+.user-review-list {
+    margin-left: 150px;
+    list-style: none;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.title {
+    margin-bottom: 0;
+    color: #fbf9f9;
+}
+
+.review-item {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+}
+
+.review-poster {
+    width: 8%;
+    margin-right: 20px;
+}
+
+p {
+    color: #fbf9f9;
+}
+
+.personal-info {
+    margin-left: 150px;
+}

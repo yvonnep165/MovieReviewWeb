@@ -1,9 +1,9 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { useAuthToken } from "../AuthTokenContext";
+import "../style/reviewInput.css";
 
 export default function Edit({movieId}) {
     const { accessToken } = useAuthToken();
@@ -43,18 +43,18 @@ export default function Edit({movieId}) {
 
     return (
         <>
-          <Button variant="primary" onClick={handleShow}>
+          <button className="edit-button" variant="primary" onClick={handleShow}>
             Edit
-          </Button>
+          </button>
     
           <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>I've Watched This Movie</Modal.Title>
+            <Modal.Header closeButton className="popup">
+              <Modal.Title className="popup pop-title">I've Watched This Movie</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>My Rating</Form.Label>
+            <Modal.Body className="popup">
+              <Form className="popup">
+                <Form.Group className="mb-3 popup" controlId="exampleForm.ControlInput1">
+                  <Form.Label className="popup pop-title">My Rating</Form.Label>
                   <Form.Control
                     type="text"
                     value={currentRating}
@@ -63,10 +63,10 @@ export default function Edit({movieId}) {
                   />
                 </Form.Group>
                 <Form.Group
-                  className="mb-3"
+                  className="mb-3 popup"
                   controlId="exampleForm.ControlTextarea1"
                 >
-                  <Form.Label>Comment</Form.Label>
+                  <Form.Label className="popup pop-title">Comment</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
@@ -77,13 +77,13 @@ export default function Edit({movieId}) {
                 </Form.Group>
               </Form>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+            <Modal.Footer className="popup">
+              <button className="pop-button" variant="secondary" onClick={handleClose}>
                 Close
-              </Button>
-              <Button variant="primary" onClick={handleSaveAndClose}>
+              </button>
+              <button className="pop-button" variant="primary" onClick={handleSaveAndClose}>
                 Save
-              </Button>
+              </button>
             </Modal.Footer>
           </Modal>
         </>

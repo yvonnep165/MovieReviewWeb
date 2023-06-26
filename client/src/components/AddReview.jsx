@@ -2,6 +2,7 @@ import React from "react";
 import WatchlistButton from "./WatchlistButton";
 import WatchedButton from "./WatchedButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import "../style/movieDetail.css";
 
 export default function AddReview({movie}){
     const { user } = useAuth0();

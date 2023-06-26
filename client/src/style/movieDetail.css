@@ -25,7 +25,7 @@
 .review-container {
     display: flex;
     flex-wrap: nowrap;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
 }
 
@@ -38,6 +38,7 @@
 
 .watched-text-p {
     text-align: center;
+    margin-bottom: 0;
 }
 
 .detail-button {
@@ -68,15 +69,52 @@
 }
 
 
+.subheading {
+    margin-left: 0;
+    margin-top: 30px;
+}
 
+.rating-list {
+    margin-left: 0;
+}
 
 .movie-review-list {
     list-style: none;
     margin-top: 20px;
+    padding-left: 0;
 }
 
 .movie-review-item {
+    margin-bottom: 5px;
+}
 
+.rating-value {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.name {
+    color: #fbf9f9;
+    margin-bottom: 0;
+}
+
+
+.edit-button {
+  border: none;
+  color: #128bb5;
+}
+
+.edit-button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
 }
 
 

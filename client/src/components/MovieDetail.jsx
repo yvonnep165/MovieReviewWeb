@@ -47,7 +47,10 @@ export default function MovieDetail() {
       </div>
       </div>
       {isAuthenticated && <AddReview movie={movieDetail} />}
+      <h2 className="subheading">Reviews</h2>
+      <div className="rating-list">
       <Rating />
+      </div>
     </div>
     </div>
   );

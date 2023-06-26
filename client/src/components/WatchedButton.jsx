@@ -12,6 +12,7 @@ export default function WatchedButton() {
   const [show, setShow] = useState(false);
   const [currentRating, setCurrentRating] = useState();
   const [comment, setComment] = useState();
+  // const handleRating = (starValue) => setCurrentRating(starValue);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -65,12 +66,14 @@ export default function WatchedButton() {
       <div>
       <Modal show={show} onHide={handleClose} >
         <Modal.Header closeButton className="popup">
-          <Modal.Title className="popup">I've Watched This Movie</Modal.Title>
+          <Modal.Title className="popup pop-title">I've Watched This Movie</Modal.Title>
         </Modal.Header>
         <Modal.Body className="popup">
           <Form className="popup">
             <Form.Group className="mb-3 popup" controlId="exampleForm.ControlInput1">
-              <Form.Label className="popup">My Rating</Form.Label>
+              <Form.Label className="popup pop-title">My Rating</Form.Label>
+              {/* <HoverRating value={currentRating}
+                onChange={(e) => setCurrentRating(e.currentTarget.value)}/> */}
               <Form.Control
                 type="text"
                 value={currentRating}
@@ -82,7 +85,7 @@ export default function WatchedButton() {
               className="mb-3 popup"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label className="popup">Comment</Form.Label>
+              <Form.Label className="popup pop-title">Comment</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -94,10 +97,10 @@ export default function WatchedButton() {
           </Form>
         </Modal.Body>
         <Modal.Footer className="popup">
-          <button variant="secondary" onClick={handleClose}>
+          <button className="pop-button" variant="secondary" onClick={handleClose}>
             Close
           </button>
-          <button variant="primary" onClick={handleSaveAndClose}>
+          <button className="pop-button" variant="primary" onClick={handleSaveAndClose}>
             Save
           </button>
         </Modal.Footer>

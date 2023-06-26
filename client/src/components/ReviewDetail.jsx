@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Edit from "./EditButton";
 import HalfRating from "./RatingStar";
+import Avatar from '@mui/material/Avatar';
 import "../style/movieDetail.css";
 
 export default function Rating() {
@@ -49,22 +50,27 @@ export default function Rating() {
     const isAuthenticated = user && user.sub === review.userId;
     const reviewUser = reviewUsers.find((user) => user.auth0Id === review.userId);
     const star = parseFloat((Math.round(review.rating / 2)).toFixed(1));
+    const char = reviewUser && reviewUser.name.charAt(0).toUpperCase();
 
     return (
       <div>
         <ul className="movie-review-list">
-        <li key={review.id} className="movie-review-item">
-        {reviewUser && (
-                <div className="movie-review-item">
-                  <p>{reviewUser.name}</p>
+        <li key={review.id} className="movie-review-item"> 
+          {reviewUser && (
+                <div className="user-info">
+                  <Avatar>{char}</Avatar>
+                  <p className="name">{reviewUser.name}</p>
+                  {isAuthenticated && <Edit movieId={movieId}/>}
                   </div>)}
+        <div className="comment-info">
+          <div className="rating-value">
         <HalfRating value={star}/>
-        <p>{review.rating}</p>
+        <p>{review.rating}</p></div>
         <p>
           {review.comment}
         </p>
 
-        {isAuthenticated && <Edit movieId={movieId}/>}
+        </div>
         </li>
         </ul>
       </div>

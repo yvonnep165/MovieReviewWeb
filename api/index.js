@@ -118,6 +118,9 @@ app.post("/details/review/:movieId", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
   const {rating, comment} = req.body;
 
+  if (rating >= 10 || rating < 0){
+    return res.status(404).json({ error: "Rating should be in the range of 0 and 10" });
+  }
   const newReview = await prisma.review.create({
     data: {
       userId: auth0Id, 

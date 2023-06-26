@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useAuthToken } from "../AuthTokenContext";
 import Edit from "./EditButton";
+import HalfRating from "./RatingStar";
+import "../style/userReview.css";
 
 export default function UserReview() {
     const { user } = useAuth0();
@@ -52,20 +54,27 @@ export default function UserReview() {
   return reviews.map((review) => {
     const isAuthenticated = user && user.sub === review.userId;
     const reviewMovie = movieList.find((movie) => movie.tmdbID === review.movieId);
+    const star = parseFloat((Math.round(review.rating / 2)).toFixed(1));
 
     return (
-      <div>
-        <li key={review.id}>
+        <li key={review.id} className="review-item">
+          {reviewMovie && <img className="review-poster" src={`https://image.tmdb.org/t/p/original${reviewMovie.poster}`} alt="poster" />}
+          <div className="review">
         {reviewMovie && (
-                <div>
-                  <p>{reviewMovie.title}</p>
+                <div className="user-info">
+                  <p className="title">{reviewMovie.title}</p>
+                  {isAuthenticated && <Edit movieId={review.movieId} />}
                   </div>)}
-          <p>{review.rating}</p>
-          <p>{review.comment}</p>
-
-          {isAuthenticated && <Edit movieId={review.movieId} />}
+        <div className="comment-info">
+          <div className="rating-value">
+        <HalfRating value={star}/>
+        <p>{review.rating}</p></div>
+          </div>
+          <p>
+          {review.comment}
+        </p>
+        </div>
         </li>
-      </div>
     );
   });
 }
