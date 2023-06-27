@@ -149,6 +149,7 @@ app.post("/details/review/:movieId", requireAuth, async (req, res) => {
 
   const newRatingCount = existingMovie.ratingCount + 1;
   const newRating = ((existingMovie.rating * existingMovie.ratingCount + rating) / newRatingCount).toFixed(2);
+  const newRatingFloat = parseFloat(newRating);
 
   // Update reviews in the Movie table
   await prisma.movie.update({
@@ -158,7 +159,7 @@ app.post("/details/review/:movieId", requireAuth, async (req, res) => {
         connect: { id: newReview.id },
       },
       ratingCount: newRatingCount,
-      rating: newRating,
+      rating: newRatingFloat,
     },
   });
 
@@ -172,6 +173,7 @@ app.put("/details/review/:movieId", requireAuth, async (req, res) => {
   const movieId = parseInt(req.params.movieId);
   const auth0Id = req.auth.payload.sub;
   const {rating, comment} = req.body;
+  const ratingFloat = parseFloat(rating);
 
   const existingReview = await prisma.review.findFirst({
     where: {
@@ -191,6 +193,7 @@ app.put("/details/review/:movieId", requireAuth, async (req, res) => {
   });
 
   const newRating = ((existingMovie.rating * existingMovie.ratingCount + rating - existingReview.rating) / existingMovie.ratingCount).toFixed(2);
+  const newRatingFloat = parseFloat(newRating);
 
   // Update the existing review
   const updatedReview = await prisma.review.update({
@@ -198,7 +201,7 @@ app.put("/details/review/:movieId", requireAuth, async (req, res) => {
       id: existingReview.id
     },
     data: {
-      rating: rating,
+      rating: ratingFloat,
       comment: comment
     }
   });
@@ -207,7 +210,7 @@ app.put("/details/review/:movieId", requireAuth, async (req, res) => {
   await prisma.movie.update({
     where: { tmdbID: movieId },
     data: {
-      rating: newRating,
+      rating: newRatingFloat,
     },
   });
 
