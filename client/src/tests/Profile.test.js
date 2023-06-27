@@ -36,7 +36,7 @@ jest.mock("../AuthTokenContext", () => ({
 test("renders Profile", () => {
 
   render(
-    <MemoryRouter initialEntries={["/"]}>
+    <MemoryRouter initialEntries={["/profile"]}>
       <Profile />
     </MemoryRouter>
   );
