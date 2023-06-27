@@ -34,3 +34,22 @@ p {
 .personal-info {
     margin-left: 150px;
 }
+
+@media (max-width:550px) {
+    .user-review-list {
+        margin-left: 40px;
+        margin-right: 21px;
+    }
+
+    .user-info {
+        flex-wrap: wrap;
+    }
+    .review-poster {
+        width: 100px;
+        height: 150px;
+    }
+
+    .personal-info {
+        margin-left: 40px;
+    }
+}
