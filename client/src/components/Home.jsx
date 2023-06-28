@@ -43,7 +43,7 @@ export default function Home() {
             tmdbRating: movie.vote_average,
           };
   
-          fetch(`http://localhost:8000/details`, {
+          fetch(`${process.env.REACT_APP_API_URL}/details`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

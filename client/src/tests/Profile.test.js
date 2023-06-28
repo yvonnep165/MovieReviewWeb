@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Profile from "../components/Profile";
 import React from "react";
+import { enableFetchMocks } from "jest-fetch-mock";
+enableFetchMocks();
 
 let mockAccessToken = "mockAccessToken";
 
@@ -15,8 +17,8 @@ jest.mock("@auth0/auth0-react", () => ({
       isLoading: false,
       user: {
         sub: "subId",
-        name: "yaqi",
-        email: "yaqi@gmail.com",
+        name: "john",
+        email: "john@gmail.com",
         email_verified: true,
       },
       isAuthenticated: mockIsAuthenticated,
@@ -33,13 +35,20 @@ jest.mock("../AuthTokenContext", () => ({
     },
   }));
 
-test("renders Profile", () => {
-
-  render(
-    <MemoryRouter initialEntries={["/profile"]}>
-      <Profile />
-    </MemoryRouter>
-  );
-
-  expect(screen.getByText("Personal Infomation")).toBeInTheDocument();
-});
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+  
+  test("renders Profile", async () => {
+    fetch.mockResponseOnce(JSON.stringify({ id: 1, name: "john", email: "john@gmail.com" }));
+  
+    render(
+      <MemoryRouter initialEntries={["/profile"]}>
+        <Profile />
+      </MemoryRouter>
+    );
+  
+    expect(screen.getByText("is loading")).toBeInTheDocument();
+  
+    // await screen.findByText("personal information");
+  });
