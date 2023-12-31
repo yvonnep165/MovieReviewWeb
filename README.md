@@ -1,13 +1,10 @@
-## homepage url
-https://client-pied-seven.vercel.app/
+# Overview  
+An IMDb-like movie review website, featuring a customized homepage, secure login/registration, user profile management, detailed movie views, etc.  
 
-Extra package:
+# Tech Stack  
+•	Developed a dynamic movie reviews web app using **CSS**, **React** and **Node.js** that supports CRUD operations  
+•	Integrated live data from an **external movie API**, ensuring responsiveness, accessibility, and cross-device compatibility  
+•	Executed **unit tests**, maintained secure **Auth0** integration, **Prisma database** management, and authentication-controlled endpoints, and deployed the full-stack app successfully utilizing **Vercel**, **Google Cloud App Engine** and **Planetscale**  
 
-### react bootstrap
-npm install react-bootstrap bootstrap
-
-### material ui
-npm install @mui/material @emotion/react @emotion/styled  
-npm install @mui/material @mui/styled-engine-sc styled-components  
-npm install @mui/icons-material  
- 
+# Link to the Demo Video:  
+https://youtu.be/Znc-zS2ApMw
